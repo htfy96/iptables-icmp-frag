@@ -6,6 +6,11 @@ Add missing ICMP FRAG_NEEDED reply to iptables. Intended for CentOS 8
 ## Build
 
 ### Build & install kernel module
+Dependencies (incomplete):
+```
+elfutils-libelf-devel kernel-devel
+```
+
 ```
 cd ./data/kernel-module
 make -C /lib/modules/$(uname -r)/build/ M=$(pwd) modules
@@ -14,7 +19,14 @@ sudo insmod ./ipt_icmp_frag.ko
 
 ### Build & install modified iptables
 
+Dependencies (incomplete):
+```
+libtool
+```
+
 Only `extensions/xt_icmp_frag.c` is new.
+
+To enable nfttables, you also need to download source code of libmnl, libnftnl, libnfnetlink and libnetfilter_conntrack, and compile from source
 
 ```
 cd ./data/iptables-modified/iptables-1.8.4
