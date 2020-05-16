@@ -30,7 +30,7 @@ static void icmp_send_frag(struct sk_buff *skb_in, int hook, __u16 mtu)
 	if (iph->frag_off & htons(IP_OFFSET))
 		return;
 
-    hdr.un.frag.mtu = cpu_to_be32(mtu);
+    hdr.un.frag.mtu = cpu_to_be16(mtu);
 
 	if (skb_csum_unnecessary(skb_in)) {
 		icmp_send(skb_in, ICMP_DEST_UNREACH, ICMP_FRAG_NEEDED, hdr.un.gateway);
